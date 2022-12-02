@@ -16,20 +16,11 @@ fn shape(character: &str) -> Shapes {
     }
 }
 
-fn shape_score(character: Shapes) -> i32 {
-    match character {
-        Shapes::Rock => 1,
-        Shapes::Paper => 2,
-        Shapes::Scissors => 3,
-    }
-}
-
 fn compare(x: &&str) -> i32 {
     let shapes = x.split(" ").collect::<Vec<&str>>();
     let first = shape(shapes[0]);
     let second = shape(shapes[1]);
-    let score = first.compare(&second);
-    score + shape_score(second)
+    first.compare(&second) + second as i32
 }
 
 fn match_condition(x: &&str) -> i32 {
@@ -44,29 +35,27 @@ fn match_condition(x: &&str) -> i32 {
         _ => first.get(),
     };
 
-    let score = first.compare(&second);
-
-    score + shape_score(second)
+    first.compare(&second) + second as i32
 }
 
 enum Shapes {
-    Rock,
-    Paper,
-    Scissors,
+    Rock = 1,
+    Paper = 2,
+    Scissors = 3,
 }
 
 impl Shapes {
     fn compare(&self, other: &Shapes) -> i32 {
         match (self, other) {
-            (Shapes::Rock, Shapes::Rock) => 3,
-            (Shapes::Rock, Shapes::Paper) => 6,
-            (Shapes::Rock, Shapes::Scissors) => 0,
-            (Shapes::Paper, Shapes::Rock) => 0,
-            (Shapes::Paper, Shapes::Paper) => 3,
-            (Shapes::Paper, Shapes::Scissors) => 6,
-            (Shapes::Scissors, Shapes::Rock) => 6,
-            (Shapes::Scissors, Shapes::Paper) => 0,
-            (Shapes::Scissors, Shapes::Scissors) => 3,
+            (Shapes::Rock, Shapes::Scissors)
+            | (Shapes::Paper, Shapes::Rock)
+            | (Shapes::Scissors, Shapes::Paper) => 0,
+            (Shapes::Rock, Shapes::Rock)
+            | (Shapes::Paper, Shapes::Paper)
+            | (Shapes::Scissors, Shapes::Scissors) => 3,
+            (Shapes::Rock, Shapes::Paper)
+            | (Shapes::Paper, Shapes::Scissors)
+            | (Shapes::Scissors, Shapes::Rock) => 6,
         }
     }
 
