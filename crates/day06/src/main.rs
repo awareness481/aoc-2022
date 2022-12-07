@@ -2,31 +2,20 @@ use std::collections::HashSet;
 
 fn main() {
     const INPUT: &str = include_str!("./input.txt");
-    // let binding = INPUT.split('\n').collect::<Vec<&str>>();
     println!("part 1: {}", detect_first_unique(INPUT, 4));
     println!("part 2: {}", detect_first_unique(INPUT, 14));
 }
 
 fn detect_first_unique(input: &str, size: usize) -> usize {
-    let binding = input.chars().into_iter().collect::<Vec<char>>();
-    let windows = binding.windows(size);
-
-    let mut final_index = 0;
-
-    for (i, window) in windows.enumerate() {
-        let mut set = HashSet::new();
-
-        for c in window {
-            set.insert(c);
-        }
-
+    let mut index: usize = 0;
+    for (i, window) in input.as_bytes().windows(size).enumerate() {
+        let set = window.iter().collect::<HashSet<&u8>>();
         if set.len() == size {
-            final_index = i + size;
+            index = i + size;
             break;
         }
     }
-
-    final_index
+    index
 }
 
 #[cfg(test)]
