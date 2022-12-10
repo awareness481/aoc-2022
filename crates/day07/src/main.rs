@@ -1,8 +1,6 @@
 use indextree::Arena;
 use std::fmt::Display;
 
-// 1182909 - 1172144
-
 fn main() {
     const INPUT: &str = include_str!("./input.txt");
     let (part_1, part_2) = parse_input(INPUT);
