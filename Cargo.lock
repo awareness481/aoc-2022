@@ -47,7 +47,6 @@ version = "0.1.0"
 dependencies = [
  "indextree",
  "regex",
- "trees",
 ]
 
 [[package]]
@@ -55,8 +54,19 @@ name = "day08"
 version = "0.1.0"
 
 [[package]]
+name = "day09"
+version = "0.1.0"
+
+[[package]]
 name = "day10"
 version = "0.1.0"
+
+[[package]]
+name = "day11"
+version = "0.1.0"
+dependencies = [
+ "regex",
+]
 
 [[package]]
 name = "encoding"
@@ -150,9 +160,3 @@ name = "regex-syntax"
 version = "0.6.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "456c603be3e8d448b072f410900c09faf164fbce2d480456f50eea6e25f9c848"
-
-[[package]]
-name = "trees"
-version = "0.4.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0de5f738ceab88e2491a94ddc33c3feeadfa95fedc60363ef110845df12f3878"
